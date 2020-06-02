@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 
 public class Eshop {
-String name;
-Owner owner;
+private String name;
+private Owner owner;
 ArrayList <Item> itemsList = new ArrayList <Item>();
 ArrayList <Buyer> buyerList = new ArrayList <Buyer>();
 
@@ -16,6 +16,17 @@ public Eshop (Owner owner, String name)
 		this.name=name;
 		this.owner= owner;
 	}
+
+public Owner getowner()
+{
+	return this.owner;
+}
+
+public String getnamer()
+{
+	return this.name;
+}
+
 
 public void addItem() throws ItemAlreadyExistsException
 {
@@ -43,7 +54,7 @@ public void addItem() throws ItemAlreadyExistsException
 	
 	for (int i=0; i<itemsList.size(); i++)
 	{
-		if (itemID==itemsList.get(i).getid()||itemName==itemsList.get(i).getname())
+		if (itemID==itemsList.get(i).getid()||itemName.equals(itemsList.get(i).getname()))
 		{
 			throw new ItemAlreadyExistsException();
 		}
@@ -135,7 +146,7 @@ public void addItem(Item itemTBA) throws ItemAlreadyExistsException // Ιδια μεθο
 {
 	for (int i=0; i<itemsList.size(); i++)
 	{
-		if (itemTBA.getid()==itemsList.get(i).getid()||itemTBA.getname()==itemsList.get(i).getname())
+		if (itemTBA.getid()==itemsList.get(i).getid()||itemTBA.getname().equals(itemsList.get(i).getname()))
 		{
 			throw new ItemAlreadyExistsException();
 		}
@@ -196,9 +207,9 @@ public void addBuyer() throws BuyerAlreadyExistsException
 	
 	myscan.close();
 											// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
-	for (int i=0; i<buyerList.size(); i++)
+	for (int i=0; i<buyerList.size(); i++)  // με το OR ( || ) ελεγχω αν τα στοιχεια ανηκουν στον owner 
 	{
-		if (buyerName==buyerList.get(i).getname()||buyerEmail==buyerList.get(i).getemail())
+		if (buyerName.equals(buyerList.get(i).getname())||buyerEmail.equals(buyerList.get(i).getemail()) || (buyerName.equals(owner.getname())||buyerEmail.equals(owner.getemail())) )
 		{
 			throw new BuyerAlreadyExistsException();
 		}
@@ -216,7 +227,7 @@ public void addBuyer(Buyer buyerTBA) throws BuyerAlreadyExistsException // ιδια 
 						// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
 	for (int i=0; i<buyerList.size(); i++)
 	{
-		if (buyerTBA.getname()==buyerList.get(i).getname()||buyerTBA.getemail()==buyerList.get(i).getemail())
+		if (buyerTBA.getname().equals(buyerList.get(i).getname())||buyerTBA.getemail().equals(buyerList.get(i).getemail()))
 		{
 			throw new BuyerAlreadyExistsException();
 		}
@@ -347,7 +358,7 @@ public void checkStatus()
 	{
 		for (int i=0; i<buyerList.size(); i++)
 		{
-			System.out.println(i+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
+			System.out.println(i+1+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
 		}
 	}	
 }

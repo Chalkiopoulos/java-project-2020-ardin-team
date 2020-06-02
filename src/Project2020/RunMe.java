@@ -1,7 +1,7 @@
 package Project2020;
 
-import java.awt.*;
-import javax.swing.*;
+
+
 
 public class RunMe 
 {
@@ -19,6 +19,10 @@ public class RunMe
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		GUI gui = new GUI(eshop);
+		
 		
 }
 

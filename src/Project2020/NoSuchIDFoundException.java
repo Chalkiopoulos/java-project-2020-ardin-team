@@ -2,8 +2,13 @@ package Project2020;
 
 public class NoSuchIDFoundException extends Exception {
 	
-	public NoSuchIDFoundException() {
-		super ("There is no item with the given ID");
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public NoSuchIDFoundException(String msg) {
+		super (msg);
 	}
 
 }

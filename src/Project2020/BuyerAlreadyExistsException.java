@@ -2,8 +2,15 @@ package Project2020;
 
 public class BuyerAlreadyExistsException extends Exception{
 
-	public BuyerAlreadyExistsException() {
-		super ("The name or email you entered are already taken");
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public BuyerAlreadyExistsException(String msg) {
+		super (msg);
 	}
 
 }

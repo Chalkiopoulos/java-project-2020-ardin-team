@@ -2,8 +2,13 @@ package Project2020;
 
 public class NegativeOrderException extends Exception {
 	
-	public NegativeOrderException() {
-		super ("You can't place an order with a negative quantity");
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public NegativeOrderException(String msg) {
+		super (msg);
 	}
 
 }

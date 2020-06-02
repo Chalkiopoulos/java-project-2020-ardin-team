@@ -1,14 +1,19 @@
 package Project2020;
 
+import java.util.ArrayList;
+
 class Buyer extends User {
 	private int bonus=0;
 	private String buyerCategory="BRONZE";
 	private ShoppingCart shoppingCart;
 	
-	public Buyer(String name ,String email){
+	
+	
+	public Buyer(String name ,String email) {
 		super(name , email);
 		shoppingCart= new ShoppingCart();		
-		}
+		
+	}
 	public void awardBonus(double price)
 	{
 		this.bonus=(int)price/10;

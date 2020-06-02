@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 
 public class Eshop {
-private String name;
-private Owner owner;
+String name;
+Owner owner;
 ArrayList <Item> itemsList = new ArrayList <Item>();
 ArrayList <Buyer> buyerList = new ArrayList <Buyer>();
 
@@ -16,17 +16,6 @@ public Eshop (Owner owner, String name)
 		this.name=name;
 		this.owner= owner;
 	}
-
-public Owner getowner()
-{
-	return this.owner;
-}
-
-public String getnamer()
-{
-	return this.name;
-}
-
 
 public void addItem() throws ItemAlreadyExistsException
 {
@@ -54,9 +43,9 @@ public void addItem() throws ItemAlreadyExistsException
 	
 	for (int i=0; i<itemsList.size(); i++)
 	{
-		if (itemID==itemsList.get(i).getid()||itemName.equals(itemsList.get(i).getname()))
+		if (itemID==itemsList.get(i).getid()||itemName==itemsList.get(i).getname())
 		{
-			throw new ItemAlreadyExistsException();
+			throw new ItemAlreadyExistsException("Item already exists!!");
 		}
 	}
 	
@@ -146,9 +135,9 @@ public void addItem(Item itemTBA) throws ItemAlreadyExistsException // Ιδια μεθο
 {
 	for (int i=0; i<itemsList.size(); i++)
 	{
-		if (itemTBA.getid()==itemsList.get(i).getid()||itemTBA.getname().equals(itemsList.get(i).getname()))
+		if (itemTBA.getid()==itemsList.get(i).getid()||itemTBA.getname()==itemsList.get(i).getname())
 		{
-			throw new ItemAlreadyExistsException();
+			throw new ItemAlreadyExistsException("Item already exists!!");
 		}
 	}
 	
@@ -184,7 +173,7 @@ public Item getitembyid(int id) throws NoSuchIDFoundException
 	 
 	else
 	{
-		throw new NoSuchIDFoundException();
+		throw new NoSuchIDFoundException("No such ID found! :/");
 	}
  }
 
@@ -207,11 +196,11 @@ public void addBuyer() throws BuyerAlreadyExistsException
 	
 	myscan.close();
 											// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
-	for (int i=0; i<buyerList.size(); i++)  // με το OR ( || ) ελεγχω αν τα στοιχεια ανηκουν στον owner 
+	for (int i=0; i<buyerList.size(); i++)
 	{
-		if (buyerName.equals(buyerList.get(i).getname())||buyerEmail.equals(buyerList.get(i).getemail()) || (buyerName.equals(owner.getname())||buyerEmail.equals(owner.getemail())) )
+		if (buyerName==buyerList.get(i).getname()||buyerEmail==buyerList.get(i).getemail())
 		{
-			throw new BuyerAlreadyExistsException();
+			throw new BuyerAlreadyExistsException("The Buyer already exists!");
 		}
 	}
 	
@@ -227,9 +216,9 @@ public void addBuyer(Buyer buyerTBA) throws BuyerAlreadyExistsException // ιδια 
 						// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
 	for (int i=0; i<buyerList.size(); i++)
 	{
-		if (buyerTBA.getname().equals(buyerList.get(i).getname())||buyerTBA.getemail().equals(buyerList.get(i).getemail()))
+		if (buyerTBA.getname()==buyerList.get(i).getname()||buyerTBA.getemail()==buyerList.get(i).getemail())
 		{
-			throw new BuyerAlreadyExistsException();
+			throw new BuyerAlreadyExistsException("The Buyer you are trying to add already exists!");
 		}
 	}
 	
@@ -358,7 +347,7 @@ public void checkStatus()
 	{
 		for (int i=0; i<buyerList.size(); i++)
 		{
-			System.out.println(i+1+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
+			System.out.println(i+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
 		}
 	}	
 }

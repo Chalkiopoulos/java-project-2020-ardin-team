@@ -11,7 +11,7 @@ class Buyer extends User {
 		}
 	public void awardBonus(double price)
 	{
-		this.bonus=(int)price/10;
+		this.bonus=this.bonus+(int)price/10;
 		this.setbuyerCategory();
 	}
 	
@@ -62,6 +62,11 @@ class Buyer extends User {
 			//Θέλω να με γυρναει ένα βήμα πίσω.
 		}
 	 }
+	
+	public ShoppingCart getShoppingCart()
+	{
+		return this.shoppingCart;
+	}
 	
 	
 }

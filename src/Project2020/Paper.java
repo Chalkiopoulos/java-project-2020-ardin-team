@@ -16,6 +16,6 @@ public class Paper extends Item{
     
     public  String getcategory()
     {
-    	return "Paper";
+    	return "paper";
     }
 }

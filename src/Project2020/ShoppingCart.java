@@ -51,7 +51,7 @@ public class ShoppingCart {
 }
 	
 void removeItemOrdered(int i)
-//пяосовг пяос сжгйа йаи опоиом акко жтианеи лемоу
+//пяосовг пяос сжгйа поу жтиавмеи то лемоу
 //то i еимаи деийтгс поу лас кееи поиа паяаццекиа
 //апо то ARRAY LIST ха диацяажеи!!!!!!!!!!!!!!!!!
 	{
@@ -117,43 +117,49 @@ double caluclateCourierCost(Buyer buyer) // паиямеи сам ояисла том BUYER TOY SHO
 	else return (courierCost);
  }
 	
-	public void showCart(Buyer buyer) // паиямеи сам ояисла том BUYER TOY SHOPPINGCART
+public void showCart(Buyer buyer) // паиямеи сам ояисла том BUYER TOY SHOPPINGCART
 	{
-		for (int i=0; i<orderList.size(); i++ )
+	double finalCost =0;
+		for (int i=0; i<this.orderList.size(); i++ )
 		{
-			System.out.println("Itemorder number: "+ i+1);
+			System.out.println("Item order number: "+ i);
 			System.out.println('\n');
 			System.out.println(orderList.get(i).getItem().toString());
 			System.out.println('\n'+'\n');
 		}
-		System.out.println('\n');
+		
 		System.out.println("Your Net value is: "+ calculateNet());
 		System.out.println("Your courier cost is: "+ caluclateCourierCost(buyer));
-		System.out.println("Your Net value is: "+ calculateNet()+caluclateCourierCost(buyer));
+		finalCost=calculateNet()+caluclateCourierCost(buyer);
+		System.out.println("Your Final cost is: "+ finalCost);
 	}
 	
- public void checkout(Buyer buyer)
+ public void checkout(Buyer buyer0)
  
   {
 	double fullcost=0;
-	showCart(buyer);
-	System.out.println('\n'+"Press 1 to continue on with the transaction");
-	Scanner scan = new Scanner(System.in);
-    int flag = scan.nextInt();
-    scan.close();
+	showCart(buyer0);
+	int flag = Str.inputInt('\n'+"Press 1 to continue on with the transaction or 2 to", 1, 2); 
+    
     if (flag==1)
     {
-    	int times =orderList.size(); // пяосовггг!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   	 for(int i=times; i<0; i--) // ЕДЫ ДЕ НЕЯЫ АМ ПЯЕПЕИ МА ПАЕИ АПО times ч АПО times-1 ПЯЕПЕИ МА ЕКЕЦВХЕИ
+    	int i=orderList.size();
+    	
+   	 while(!orderList.isEmpty()) 
     	{
-    		fullcost=fullcost+orderList.get(i).getItem().getprice()*orderList.get(i).getquantity();
-    		orderList.remove(i);
+    		fullcost=fullcost+orderList.get(i-1).getItem().getprice()*orderList.get(i-1).getquantity();
+    		
+    		orderList.remove(i-1);
+    		i--;
     	}
-   	 buyer.awardBonus(fullcost);
+   	
+   	 
+   	 buyer0.awardBonus(fullcost);
     }
     else 
     {																//пяосовг !!!!! сжгйа втистг тоу лемоу
-    	System.out.println("You did not complete the transaction");//еды пяепеи ма пгцаимеи ема бгла писы
+    	System.out.println("You did not complete the transaction");
+      
     }
    
   }

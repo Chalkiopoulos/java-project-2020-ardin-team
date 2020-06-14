@@ -16,6 +16,6 @@ public class Notebook extends Item{
     
     public  String getcategory()
     {
-    	return "Notebook";
+    	return "notebook";
     }
 }

@@ -5,5 +5,5 @@ public class Owner extends User {
 		super(name , email);
 		this.isAdmin=true;
 	}
-	
+
 }

@@ -18,6 +18,6 @@ public class Pencil extends Item{
     
     public  String getcategory()
     {
-    	return "Pencil";
+    	return "pencil";
     }
 }

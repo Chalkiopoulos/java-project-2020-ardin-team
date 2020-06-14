@@ -15,6 +15,6 @@ public class Pen extends Item{
     
     public  String getcategory()
     {
-    	return "Pen";
+    	return "pen";
     }
 }

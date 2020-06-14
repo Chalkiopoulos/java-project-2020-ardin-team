@@ -27,5 +27,9 @@ public void setquantity(int a)
 	{
 		this.quantity=a;
 	}
+public String toString()
+{
+	return("item: "+this.item.getname()+" quantity: "+this.getquantity());
+}
 
 }

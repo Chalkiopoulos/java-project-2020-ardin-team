@@ -1,6 +1,6 @@
 package Project2020;
 
-import java.util.Scanner;
+
 import java.util.ArrayList;
 
 
@@ -22,7 +22,7 @@ public Owner getowner()
 	return this.owner;
 }
 
-public String getnamer()
+public String getname()
 {
 	return this.name;
 }
@@ -38,19 +38,11 @@ public void addItem() throws ItemAlreadyExistsException
 	Item item=null;
 	
 	
-	Scanner myscan = new Scanner(System.in); // ΔΕΝ ΚΑΤΑΛΑΒΑΙΝΩ ΓΙΑΤΙ ΕΔΩ ΜΟΥ ΛΕΕΙ ΟΤΙ ΔΕΝ ΚΛΕΙΝΕΙ ΤΟ MYSCAN
-											 // ΞΕΚΑΘΑΡΑ ΚΛΕΙΝΕΙ ΣΤΗ ΓΡΑΜΜΗ 128
-	
-	System.out.println("Give the item's name:");
-	itemName=myscan.nextLine();
-	System.out.println("Give the item's description:");
-	itemDescription=myscan.nextLine();
-	System.out.println("Give the item's id:");
-	itemID=myscan.nextInt();
-	System.out.println("Give the item's price:");
-	itemPrice=myscan.nextDouble();
-	System.out.println("Give the item's starting stock:");
-	itemStock=myscan.nextInt();
+	itemName= Str.input("Give the item's name:");
+	itemDescription=Str.input("Give the item's Description:");
+	itemID= (int)Str.longOf("Give the item's id:");
+	itemPrice= Str.doubleOf("Give the item's price:");
+	itemStock=(int)Str.longOf("Give the item's starting stock:");
 	
 	for (int i=0; i<itemsList.size(); i++)
 	{
@@ -63,8 +55,7 @@ public void addItem() throws ItemAlreadyExistsException
 do
 {	
 	flag=false;
-	System.out.println("What type of item do you want to add?"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
-	choice=myscan.nextInt();
+	choice=Str.inputInt("What type of item do you want to add?"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper", 1, 4);
 	switch(choice)
 	{
 	case 1:
@@ -72,14 +63,12 @@ do
 			
 			double tipsize;
 			String type;
-			
-			System.out.println("Give tipsize in mm ");
-			tipsize=myscan.nextDouble();
+		
+			tipsize= Str.doubleOf("Give tipsize in mm ");
 			System.out.println("Give type of pencil(H,B,HB)");
-			type=myscan.nextLine();
 			do 
 				{
-					type=myscan.nextLine();
+				type=Str.input("Give type of pencil(H,B,HB)");
 					if(type!="H"&&type!="B"&&type!="HB")
 						System.out.println("This is not a valid type give another type");
 				}
@@ -94,10 +83,8 @@ do
 			String color;
 			double tipsize;
 			
-			System.out.println("Give tipsize in mm ");
-			tipsize=myscan.nextDouble();
-			System.out.println("Give color of pen");
-			color=myscan.nextLine();
+			tipsize= Str.doubleOf("Give tipsize in mm ");
+			color=Str.input("Give color of pen");
 			
 			item = new Pen (itemName,itemDescription,itemID,itemStock,itemPrice,color,tipsize);
 			
@@ -107,8 +94,7 @@ do
 		{
 			int numsub;
 			
-			System.out.println("Give the number of subsections ");
-			numsub=myscan.nextInt();
+			numsub=(int)Str.longOf("Give the number of subsections ");
 			item=new Notebook(itemName,itemDescription,itemID,itemStock,itemPrice,numsub);
 			break;
 		}
@@ -117,14 +103,10 @@ do
 		{
 			int weight;
 			int pages;
-			
-			System.out.println("Give the weight in grammars(must be an integer) ");
-			weight=myscan.nextInt();
-			System.out.println("Give the number of pages ");
-			pages=myscan.nextInt();
-			
-			item=new Paper(itemName,itemDescription,itemID,itemStock,itemPrice,weight,pages);
-			break;
+				weight=(int)Str.longOf("Give the weight in grammars ");
+				pages=(int)Str.longOf("Give the number of pages ");
+		item=new Paper(itemName,itemDescription,itemID,itemStock,itemPrice,weight,pages);
+		break;
 		}
 		
 	default:
@@ -136,7 +118,6 @@ do
 	
 }
 	while (flag==true);
-	myscan.close();
 	itemsList.add(item);
 	
 }
@@ -195,19 +176,12 @@ public void removeitem(Item itemTBR)// item To Be Removed
 
 public void addBuyer() throws BuyerAlreadyExistsException
 {
-	Scanner myscan = new Scanner(System.in);
 	
-	String buyerName;
-	String buyerEmail;
+	String buyerName=Str.input("Give the buyer's name:");
+	String buyerEmail=Str.input("Give the buyer's E-mail ");
 	
-	System.out.println("Give the buyer's name:");
-	buyerName=myscan.nextLine();
-	System.out.println("Give the buyer's E-mail");
-	buyerEmail=myscan.nextLine();
-	
-	myscan.close();
-											// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
-	for (int i=0; i<buyerList.size(); i++)  // με το OR ( || ) ελεγχω αν τα στοιχεια ανηκουν στον owner 
+																						// ελεγχω αν υπαρχει ηδη ο buyer που παει να δημιουργηθεί
+	for (int i=0; i<buyerList.size(); i++)  	// με το OR ( || ) ελεγχω αν τα στοιχεια ανηκουν στον owner 
 	{
 		if (buyerName.equals(buyerList.get(i).getname())||buyerEmail.equals(buyerList.get(i).getemail()) || (buyerName.equals(owner.getname())||buyerEmail.equals(owner.getemail())) )
 		{
@@ -246,14 +220,15 @@ void removebuyer(Buyer buyerTBR)//buyer To Be Removed
 
 public void updateItemStock(Item itemTBSU)//item To Be Stock Updated
 {
-	int nstock;
-	
-	Scanner myscan = new Scanner(System.in);
-	System.out.println("Choose the new stock for the item: ");
-	nstock=myscan.nextInt();
+	int nstock= Str.inputInt("Choose the new stock for the item: ", 0, 90000000);
 	itemTBSU.setstock(nstock);
+}
+
+public void updateItemPrice(Item itemTBSU)//item To Be Price Updated
+{
+	int nprice= Str.inputInt("Choose the new stock for the item: ", 0, 90000000);
+	itemTBSU.setprice(nprice);
 	
-	myscan.close();
 }
 
 public void showCategories()
@@ -265,78 +240,28 @@ public void showCategories()
 	
 	for ( int i=0; i<itemsList.size(); i++ )
 	{
-		if (itemsList.get(i).getcategory()=="Pen") showPens=true;
-		if (itemsList.get(i).getcategory()=="Pen") showPencils=true;
-		if (itemsList.get(i).getcategory()=="Pen") showPaper=true;
-		if (itemsList.get(i).getcategory()=="Pen") showNotebooks=true;
+		if (itemsList.get(i).getcategory().equals("pen")) showPens=true;
+		if (itemsList.get(i).getcategory().equals("pencil")) showPencils=true;
+		if (itemsList.get(i).getcategory().equals("paper")) showPaper=true;
+		if (itemsList.get(i).getcategory().equals("notebook")) showNotebooks=true;
 	}
 	
 	System.out.println('\n'+"The currently available categories are: "+ '\n');
-	if (showPens)       System.out.println("Pens");
-	if (showPencils)    System.out.println("Pencils");
-	if (showNotebooks)  System.out.println("Notebook");
-	if (showPaper)      System.out.println("Paper");
-	
+	if (showPens)       System.out.println("pen");
+	if (showPencils)    System.out.println("pencil");
+	if (showNotebooks)  System.out.println("notebook");
+	if (showPaper)      System.out.println("paper");
+	if (!(showPens||showPencils||showNotebooks||showPaper)) System.out.println("There are no available categories");
 }
 
-public void showProductsInCategory()
+public void showProductsInCategory(String chosenCategory)
 {
 	boolean itemsExist=false;
-	boolean flag= false;
-	String chosencategory;
-	int choice;
-	Scanner myscan= new Scanner(System.in);
-	System.out.println("Choose what category you want to see the products of :"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
-	choice=myscan.nextInt();
-	
-	
-	do
-	{	
-		flag=false;
-		System.out.println("What type of item do you want to add?"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
-		choice=myscan.hashCode();
-		switch(choice)
-		{
-		case 1:
-			{
-				chosencategory="Pencil";
-				break;
-			}
-			
-		case 2:
-			{
-				chosencategory="Pen";
-				break;
-			}
-		case 3:
-			{
-				chosencategory="Notebook";
-				break;
-			}
-			
-		case 4:
-			{
-				chosencategory="Paper";
-				break;
-			}
-			
-		default:
-			{
-				chosencategory="NoCategoryHasBeenChosen";
-				flag=true;
-				System.out.println("You did not enter a valid choice, try again");
-			}	
-			
-		}
-		
-	}
-	while (flag==true);
-	myscan.close();
 	
 	for(int i=0; i<itemsList.size(); i++)
 	{
-		if (itemsList.get(i).getcategory()==chosencategory)
-			System.out.println(itemsList.get(i).getname());
+		if (itemsList.get(i).getcategory()==chosenCategory)
+			System.out.println(itemsList.get(i).getname()+" "+itemsList.get(i).getid() );
 		    itemsExist=true;
 	}
   
@@ -358,7 +283,7 @@ public void checkStatus()
 	{
 		for (int i=0; i<buyerList.size(); i++)
 		{
-			System.out.println(i+1+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
+			System.out.println(i+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
 		}
 	}	
 }

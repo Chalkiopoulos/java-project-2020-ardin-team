@@ -23,7 +23,7 @@ public abstract class Item {
 	public abstract String getDetails();
 	
 	public String toString() {
-	 return ( getBasicInfo() + getDetails() );
+	 return (  getDetails() );
  }
 // Μέθοδοι getters :
 	public int getstock() {

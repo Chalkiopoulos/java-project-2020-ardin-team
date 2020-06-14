@@ -19,7 +19,7 @@ public class RunMe {
 		Pen penB = new Pen("penB","green pen",101,3,2.0,"green",0.5);
 		Pen penC = new Pen("penC","yellow pen",102,5,2.0,"yellow",0.5);
 		Pencil pencilA = new Pencil("pencilA","first pencil",103,70,1.0,0.7,"B");
-		Pencil pencilB = new Pencil("pencilC","second pencil",104,30,1.0,0.7,"HB");
+		Pencil pencilB = new Pencil("pencilB","second pencil",132,30,1.0,0.7,"HB");
 		Pencil pencilC = new Pencil("pencilC","third pencil",104,30,1.0,0.7,"H");
 		Notebook notebookA = new Notebook("notebookA","4-subject",105,5,6.0,4);
 		Notebook notebookB = new Notebook("notebookB","5-subject",106,5,6.0,5);

@@ -220,15 +220,18 @@ void removebuyer(Buyer buyerTBR)//buyer To Be Removed
 
 public void updateItemStock(Item itemTBSU)//item To Be Stock Updated
 {
-	int nstock= Str.inputInt("Choose the new stock for the item: ", 0, 90000000);
+	int nstock= Str.inputInt("Choose the new stock for the item: ",0,90000);
 	itemTBSU.setstock(nstock);
+	
 }
 
 public void updateItemPrice(Item itemTBSU)//item To Be Price Updated
 {
-	int nprice= Str.inputInt("Choose the new stock for the item: ", 0, 90000000);
-	itemTBSU.setprice(nprice);
+	double nprice;
 	
+	 nprice= (double)Str.inputInt("Choose the new price for the item: ", 0, 90000);
+	
+	itemTBSU.setprice(nprice);
 }
 
 public void showCategories()
@@ -251,7 +254,7 @@ public void showCategories()
 	if (showPencils)    System.out.println("pencil");
 	if (showNotebooks)  System.out.println("notebook");
 	if (showPaper)      System.out.println("paper");
-	if (!(showPens||showPencils||showNotebooks||showPaper)) System.out.println("There are no available categories");
+	if (!(showPens||showPencils||showNotebooks||showPaper)) {System.out.println("There are no available categories");}
 }
 
 public void showProductsInCategory(String chosenCategory)
@@ -260,9 +263,10 @@ public void showProductsInCategory(String chosenCategory)
 	
 	for(int i=0; i<itemsList.size(); i++)
 	{
-		if (itemsList.get(i).getcategory()==chosenCategory)
+		if (itemsList.get(i).getcategory().equals(chosenCategory)) {
 			System.out.println(itemsList.get(i).getname()+" "+itemsList.get(i).getid() );
 		    itemsExist=true;
+		}
 	}
   
 	if (!itemsExist) {System.out.println("The chosen category has no items");}

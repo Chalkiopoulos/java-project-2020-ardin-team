@@ -89,12 +89,16 @@ void changeItemOrderedQuantity(int i, int newquantity) throws NotEnoughStockExce
 
 void clearCart()
 	{
-	int times =orderList.size(); // ΠΡΟΣΟΧΗΗΗ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	 for(int i=times; i<0; i--) // εδω δε ξερω αν πρεπει να παει απο times ή απο times-1 πρεπει να ελεγχθει
-	 {							//  
-		 removeItemOrdered(i);  // 
-	 }
+	int i= orderList.size();
+	while(!orderList.isEmpty()) 
+	{
+		
+		
+		removeItemOrdered(i-1);
+		i--;
 	}
+	 }
+	
 
 double calculateNet()
 	{

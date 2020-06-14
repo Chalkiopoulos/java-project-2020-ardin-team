@@ -118,13 +118,13 @@ public void browseStoreMenu()
 	String choice = Str.input("Type the name of the category you wish to see (all lowercase) and anything else to go back");
 	switch(choice)
 	{
-	case "pens":
+	case "pen":
 		index=5;
 		break;
-	case "pencils":
+	case "pencil":
 		index=6;
 		break;
-	case "notebooks":
+	case "notebook":
 	index=7;
 	break;
 	case "paper":
@@ -145,11 +145,13 @@ public void pensMenu()
  
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("pens");	
+ this.eshop.showProductsInCategory("pen");	
 
  int choice= Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -1,1000000);
  
  if (choice==-1) index=3;
+ else
+{
  for(int j=0; j<this.eshop.itemsList.size(); j++)
  {
 	 if (choice==this.eshop.itemsList.get(j).getid())
@@ -192,7 +194,7 @@ public void pensMenu()
 	 System.out.println("you have chosen a number that does not correspond with an item.");
 	 index=5;
  }
- 
+} 
 
 }
 
@@ -201,9 +203,11 @@ public void pencilsMenu()
  int i;// αυτο ειναι to index του selectedbuyer
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("pencils");	
+ this.eshop.showProductsInCategory("pencil");	
  int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -1, 1000000);
  if (choice==-1) index=3;
+ else
+{ 
  for(int j=0; j<this.eshop.itemsList.size(); j++)
  {
 	 if (choice==this.eshop.itemsList.get(j).getid())
@@ -245,7 +249,7 @@ public void pencilsMenu()
 	 System.out.println("you have chosen a number that does not correspond with an item.");
 	 index=6;
  }
- 
+} 
 
 }	
 
@@ -254,9 +258,11 @@ public void notebooksMenu()
  int i;// αυτο ειναι to index του selectedbuyer
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("notebooks");	
+ this.eshop.showProductsInCategory("notebook");	
  int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -1, 1000000);
  if (choice==-1) index=3;
+ else
+ {
  for(int j=0; j<this.eshop.itemsList.size(); j++)
  {
 	 if (choice==this.eshop.itemsList.get(j).getid())
@@ -298,7 +304,7 @@ public void notebooksMenu()
 	 System.out.println("you have chosen a number that does not correspond with an item.");
 	 index=7;
  }
- 
+ } 
 
 }
 public void paperMenu() 
@@ -309,6 +315,8 @@ public void paperMenu()
  this.eshop.showProductsInCategory("paper");	
  int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -1, 1000000);
  if (choice==-1) index=3;
+ else
+{
  for(int j=0; j<this.eshop.itemsList.size(); j++)
  {
 	 if (choice==this.eshop.itemsList.get(j).getid())
@@ -351,7 +359,7 @@ public void paperMenu()
 	 index=8;
  }
  
-
+}
 }
 
 public void viewCartMenu()
@@ -485,9 +493,11 @@ public void ownerPensMenu()
 {
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("pens");	
- int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -2, 90000000);
+ this.eshop.showProductsInCategory("pen");	
+ 
+ int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -2, 90000);
  if (choice==-1) index=10;
+ 
  else {
  for(int j=0; j<this.eshop.itemsList.size(); j++)
  {
@@ -534,7 +544,7 @@ public void ownerPensMenu()
 public void ownerPencilMenu() {
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("pencils");	
+ this.eshop.showProductsInCategory("pencil");	
  int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -2, 100000);
  
 if (choice==-1) index=10;
@@ -585,7 +595,7 @@ else {
 public void ownerNotebooksMenu() {
  boolean flag=false;
  Item selectedItem=null;
- this.eshop.showProductsInCategory("notebooks");	
+ this.eshop.showProductsInCategory("notebook");	
  int choice = Str.inputInt("Type the ID of the item you wish to examine. (press -1 to browse store)", -2, 100000);
  if (choice==-1) index=10;
  else {
@@ -661,10 +671,9 @@ public void ownerPaperMenu()
 	 int check = Str.inputInt("Do you wish to change the selected item ?(press 0 for yes and 1 for no and 2 to return to the main Menu)", 0, 2);
 	 if(check==0)
 	 {
-		 
+		   
 		 	this.eshop.updateItemStock(selectedItem);
-		 	this.eshop.updateItemPrice(selectedItem);
-		  	
+		 	this.eshop.updateItemPrice(selectedItem);	
 	 }
 	 else if(check == 1)
 	 {

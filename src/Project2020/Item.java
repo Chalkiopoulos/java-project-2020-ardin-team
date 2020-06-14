@@ -33,14 +33,14 @@ public abstract class Item {
 		return ( this.price);
 	}
 // Μέθοδοι setters :	
-	public int setstock(int newstock) {
-		return this.stock= newstock;
+	public void setstock(int newstock) {
+		 this.stock= newstock;
 	}
-	public double setprice(double newprice) {
-		return this.price= newprice;
+	public void setprice(double newprice) {
+		 this.price= newprice;
 	}
-	public String setDescription (String newDescription) {
-		return this.description=newDescription;
+	public void setDescription (String newDescription) {
+		 this.description=newDescription;
 	}
 	public boolean isthesame(Item a)
 	{
